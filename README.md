@@ -44,10 +44,12 @@ projeto-java-jsp-antigravity/
 │   └── curriculos/                              # Pasta interna para armazenamento seguro dos PDFs
 ├── pom.xml                                      # Configuração Maven para Java 17 e Jakarta EE
 ├── README.md                                    # Documentação do projeto
+├── run.bat                                      # Script Windows CMD para inicialização rápida via CLI
+├── run.ps1                                      # Script PowerShell para inicialização rápida via CLI
 ├── src/main/
 │   ├── java/com/exemplo/
 │   │   ├── FormServlet.java                     # Servlet multipart com validação de Magic Bytes e persistência
-│   │   └── Main.java                            # Inicializador com Tomcat embutido (opcional)
+│   │   └── Main.java                            # Classe inicializadora com Tomcat embutido
 │   └── webapp/
 │       ├── WEB-INF/
 │       │   └── web.xml                          # Descritor web Jakarta EE 6
@@ -60,19 +62,59 @@ projeto-java-jsp-antigravity/
 
 ---
 
-## 🛠️ Como Executar
+## 🛠️ Modos de Execução da Aplicação
 
-### Opção 1: Via Servidor Tomcat 10+ Local
+Você pode executar esta aplicação de 3 maneiras diferentes, conforme sua preferência ou ambiente:
+
+### Opção 1: Via Servidor Tomcat 10+ Externo (Arquivo `.war`)
 1. Gere o pacote `.war` através da sua IDE ou comando Maven:
    ```bash
    mvn package
    ```
-2. Realize o deploy do `.war` gerado em um servidor compatível com Jakarta EE / Java 17 (ex: Apache Tomcat 10+).
-3. Acesse `http://localhost:8080/`.
+2. Realize o deploy do arquivo `target/app.war` em um servidor Apache Tomcat 10+ (compatível com Jakarta EE e Java 17).
+3. Acesse: `http://localhost:8080/app/` (ou de acordo com o contexto configurado no seu Tomcat).
 
-### Opção 2: Execução Standalone via Main (Tomcat Embutido)
-1. Execute a classe Java [Main.java](file:///c:/Users/joaovictor/Documents/Projetos/projeto-java-jsp-antigravity/src/main/java/com/exemplo/Main.java).
-2. Acesse a aplicação no navegador em `http://localhost:8080/`.
+---
 
-<img width="1360" height="768" alt="image" src="https://github.com/user-attachments/assets/bd8f8bf3-b12a-4ccd-8201-a02e133b434d" />
+### Opção 2: Execução Direta pela IDE (Eclipse, IntelliJ IDEA ou VS Code)
+1. Abra o projeto na sua IDE Java configurada com o **JDK 17**.
+2. Navegue até a classe:
+   `src/main/java/com/exemplo/Main.java`
+3. Clique com o botão direito e selecione **Run 'Main.main()'** (ou execute via play button).
+4. O servidor Tomcat embutido será iniciado automaticamente.
+5. Acesse no navegador: `http://localhost:8080/`.
 
+---
+
+### Opção 3: Execução via Linha de Comando (Terminal / CLI com `java Main`)
+Ideal para rodar rapidamente pelo terminal sem precisar abrir uma IDE e sem necessidade de ter o Maven instalado globalmente no seu sistema:
+
+#### Modo A: Comando direto `java`
+- No **Windows (PowerShell ou Prompt de Comando)**:
+  ```powershell
+  java -cp "target/classes;target/app/WEB-INF/lib/*" com.exemplo.Main
+  ```
+- No **Linux ou macOS**:
+  ```bash
+  java -cp "target/classes:target/app/WEB-INF/lib/*" com.exemplo.Main
+  ```
+
+#### Modo B: Usando os scripts de conveniência
+- No **Prompt de Comando (CMD)**:
+  ```cmd
+  run.bat
+  ```
+- No **PowerShell**:
+  ```powershell
+  .\run.ps1
+  ```
+
+Ao iniciar, você verá as mensagens de inicialização no terminal:
+```
+=================================================
+ Servidor JSP iniciado com sucesso em Java 17!
+ Acesse no navegador: http://localhost:8080
+ Pressione Ctrl+C para encerrar o servidor.
+=================================================
+```
+Para encerrar a execução a qualquer momento, pressione `Ctrl + C` no terminal.
