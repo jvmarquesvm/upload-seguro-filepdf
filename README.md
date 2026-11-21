@@ -73,3 +73,6 @@ projeto-java-jsp-antigravity/
 ### Opção 2: Execução Standalone via Main (Tomcat Embutido)
 1. Execute a classe Java [Main.java](file:///c:/Users/joaovictor/Documents/Projetos/projeto-java-jsp-antigravity/src/main/java/com/exemplo/Main.java).
 2. Acesse a aplicação no navegador em `http://localhost:8080/`.
+
+<img width="1360" height="768" alt="image" src="https://github.com/user-attachments/assets/bd8f8bf3-b12a-4ccd-8201-a02e133b434d" />
+
