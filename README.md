@@ -40,9 +40,12 @@ Para evitar ataques comuns de upload de arquivos maliciosos (ex: atacantes que p
 
 ```
 projeto-java-jsp-antigravity/
+├── .mvn/wrapper/                                # Arquivos do Maven Wrapper (não necessita Maven instalado)
 ├── uploads/
 │   └── curriculos/                              # Pasta interna para armazenamento seguro dos PDFs
 ├── pom.xml                                      # Configuração Maven para Java 17 e Jakarta EE
+├── mvnw.cmd                                     # Script Windows para compilar e empacotar via Maven Wrapper
+├── mvnw                                         # Script Linux/macOS para compilar e empacotar via Maven Wrapper
 ├── README.md                                    # Documentação do projeto
 ├── run.bat                                      # Script Windows CMD para inicialização rápida via CLI
 ├── run.ps1                                      # Script PowerShell para inicialização rápida via CLI
@@ -62,14 +65,38 @@ projeto-java-jsp-antigravity/
 
 ---
 
+## 🔨 Como Compilar o Projeto (Sem Maven Instalado)
+
+Caso você tenha baixado ou clonado o projeto e tenha **apenas a pasta `src/`, o `pom.xml` e o Java 17 instalado**, você não precisa instalar o Maven manualmente. Use o **Maven Wrapper** que acompanha o projeto:
+
+- **No Windows (PowerShell / Prompt de Comando):**
+  ```powershell
+  # Apenas compilar as classes
+  .\mvnw.cmd compile
+
+  # Ou gerar o pacote completo (.war e dependências)
+  .\mvnw.cmd package
+  ```
+
+- **No Linux / macOS (Bash):**
+  ```bash
+  ./mvnw compile
+  # ou
+  ./mvnw package
+  ```
+
+O wrapper baixa automaticamente a versão oficial exata do Maven na primeira execução e constrói o projeto sem poluir o sistema operacional.
+
+---
+
 ## 🛠️ Modos de Execução da Aplicação
 
-Você pode executar esta aplicação de 3 maneiras diferentes, conforme sua preferência ou ambiente:
+Você pode executar esta aplicação de 3 maneiras diferentes:
 
 ### Opção 1: Via Servidor Tomcat 10+ Externo (Arquivo `.war`)
-1. Gere o pacote `.war` através da sua IDE ou comando Maven:
-   ```bash
-   mvn package
+1. Gere o pacote `.war`:
+   ```powershell
+   .\mvnw.cmd package
    ```
 2. Realize o deploy do arquivo `target/app.war` em um servidor Apache Tomcat 10+ (compatível com Jakarta EE e Java 17).
 3. Acesse: `http://localhost:8080/app/` (ou de acordo com o contexto configurado no seu Tomcat).
@@ -80,14 +107,12 @@ Você pode executar esta aplicação de 3 maneiras diferentes, conforme sua pref
 1. Abra o projeto na sua IDE Java configurada com o **JDK 17**.
 2. Navegue até a classe:
    `src/main/java/com/exemplo/Main.java`
-3. Clique com o botão direito e selecione **Run 'Main.main()'** (ou execute via play button).
-4. O servidor Tomcat embutido será iniciado automaticamente.
-5. Acesse no navegador: `http://localhost:8080/`.
+3. Execute o método `main()`.
+4. Acesse no navegador: `http://localhost:8080/`.
 
 ---
 
 ### Opção 3: Execução via Linha de Comando (Terminal / CLI com `java Main`)
-Ideal para rodar rapidamente pelo terminal sem precisar abrir uma IDE e sem necessidade de ter o Maven instalado globalmente no seu sistema:
 
 #### Modo A: Comando direto `java`
 - No **Windows (PowerShell ou Prompt de Comando)**:
